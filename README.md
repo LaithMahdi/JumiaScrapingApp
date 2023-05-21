@@ -4,8 +4,10 @@ To run the app you need to install django to follow this steps :
 
 1 - Install project dependencies 
   pip install -r requirements.txt
+  
 2 - Perform initial migrations
   python manage.py migrate
+  
 3 - Start the development server
   python manage.py runserver
   
