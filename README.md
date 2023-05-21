@@ -3,15 +3,23 @@
 To run the app you need to install django to follow this steps : 
 
 1 - Install project dependencies 
-  pip install -r requirements.txt
+
+
+pip install -r requirements.txt
   
 2 - Perform initial migrations
-  python manage.py migrate
+
+
+python manage.py migrate
   
 3 - Start the development server
-  python manage.py runserver
+
+
+python manage.py runserver
   
+
 The Django project focuses on scraping data from the Jumia Tunisia website within the phones category. This project aims to retrieve relevant information about various phone products listed on the Jumia Tunisia platform.
+
 
 By leveraging web scraping techniques, the project collects data such as product names, prices, descriptions, and other details related to phones available for sale on Jumia Tunisia. This data can be used for various purposes, including price comparison, market analysis, or building a product catalog.
 
