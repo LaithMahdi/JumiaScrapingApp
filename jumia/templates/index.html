@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smartphones</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <section class="">
+      <div class="container d-sm-flex flex-wrap justify-content-between">
+        <div
+          class="col-md-3 d-flex align-items-center justify-content-center col-sm-12 col-12"
+          id="filter"
+          >
+          <div class="filter p-3 bg-white rounded rounded-4 border-4">
+            <h2 class="fw-bold">Filter</h2>
+            <div class="input_group">
+              <form method="POST" class="mt-4">
+                <div class="">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label class="fw-bold my-2">Select Brand :</label>
+                    <select name="brand" id="brand" class="form-control" multiple>
+                      {% for brand in brands %}
+                      <option value="{{ brand }}">{{ brand }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-group mt-2">
+                    <label class="fw-bold my-2">Minimum Price :</label>
+                    <input type="number" name="minPrice" class="form-control" min="15"/>
+                  </div>
+                  <div class="form-group mt-2">
+                    <label class="fw-bold my-2">Maximum price :</label>
+                    <input type="number" name="maxPrice" class="form-control"  min="15"/>
+                  </div>
+
+                  <div class="form-group mt-2">
+                    <label class="fw-bold my-2">Select Order :</label>
+                    <select name="order" id="order" class="form-control">
+                      {% for order in orders %}
+                      <option value="{{ order }}">{{ order }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="my-3">
+                    <button type="submit" class="btn btn-dark w-100 my-2">
+                    Search
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 col-sm-12 col-12" id="data">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="bg-white mx-3 mt-3 px-4 py-1 rounded rounded-4">
+                <h2 class="fw-bold mt-2">Smartphones list</h2>
+                <div class="mt-2 d-sm-flex flex-wrap justify-content-between">
+                  <p class="">
+                    <strong>Nombre of result :</strong>
+                    <span class="text-secondary">{{ search.length }}</span>
+                  </p>
+                  <p>
+                    <strong>Choice of brand :</strong>
+                    <span class="text-secondary"
+                      >{% if search.brand != '' %}{{ search.brand }} {% else %}
+                    N/A {% endif %}</span
+                      >
+                  </p>
+                  <p>
+                    <strong>Minimum Price :</strong>
+                    <span class="text-secondary"
+                      >{% if search.min != '' %}{{ search.min }} TND{% else %}
+                    N/A{% endif %}</span
+                      >
+                  </p>
+                  <p>
+                    <strong>Maximum price :</strong>
+                    <span class="text-secondary"
+                      >{% if search.max != '' %}{{ search.max }} TND{% else %}
+                    N/A{% endif %}</span
+                      >
+                  </p>
+                </div>
+              </div>
+              <div
+                class="row row-cols-1 row-cols-md-4 g-4 my-3 mx-1 scrollable-div"
+                >
+                {% if smartphones %}
+                {% for smartphone in smartphones %}
+                <div class="col">
+                  <a href="https://www.jumia.com.tn{{ smartphone.link }}" class="text-decoration-none text-dark">
+                    <div class="card border-0 rounded rounded-3">
+                      <div class="text-center">
+                        <img src="{{ smartphone.image }}" class="card-img-top p-2 w-75 img-fluid" alt="{{ smartphone.name }}" />
+                      </div>
+                      <div class="card-body">
+                        <h6 class="card-title line-ellipsis fw-light">{{ smartphone.name }}</h6>
+                        <p class="card-text text-danger fs-6 text-end fw-bold my-2">{{ smartphone.price }}</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="w-100">
+                  <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <div class="">
+                      No smartphones available.
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+      #filter {
+      height: 100vh;
+      }
+      @media (max-width: 600px) {
+      #filter {
+      height: 50vh;
+      margin: 10rem 0;
+      }
+      .scrollable-div {
+      height: 100vh;
+      overflow: hidden;
+      }
+      }
+      body {
+      background-color: #f6f7fc;
+      font-family: "Roboto", serif;
+      }
+      .line-ellipsis {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      }
+      .scrollable-div {
+      height: 80vh;
+      overflow: auto;
+      }
+      .scrollable-div img {
+      transition: transform 0.2s;
+      }
+      .scrollable-div img:hover {
+      transform: scale(1.3);
+      }
+    </style>
+  </body>
+</html>
