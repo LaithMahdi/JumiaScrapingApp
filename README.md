@@ -22,5 +22,4 @@ To execute the scraping process, the project likely employs popular Python libra
 With the collected information, the Django project can offer functionality such as displaying the scraped phone data in a user-friendly format, implementing search and filtering options, and providing a seamless browsing experience for users interested in purchasing phones from Jumia Tunisia.
   
   
-  
 ![jumia](https://github.com/LaithMahdi/JumiaScrapingApp/assets/109853134/337fadb5-834e-4a31-bab9-9677fb85bd10)
