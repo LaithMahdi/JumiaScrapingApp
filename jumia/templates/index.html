@@ -10,7 +10,7 @@
     <section class="">
       <div class="container d-sm-flex flex-wrap justify-content-between">
         <div
-          class="col-md-3 d-flex align-items-center justify-content-center col-sm-12 col-12"
+          class="col-md-3 d-flex align-items-center justify-content-start col-sm-12 col-12"
           id="filter"
           >
           <div class="filter p-3 bg-white rounded rounded-4 border-4">
@@ -43,7 +43,7 @@
                       <option value="{{ order }}">{{ order }}</option>
                       {% endfor %}
                     </select>
-                  </div>
+                  </div> 
                   <div class="my-3">
                     <button type="submit" class="btn btn-dark w-100 my-2">
                     Search
@@ -54,6 +54,9 @@
             </div>
           </div>
         </div>
+
+
+
         <div class="col-md-9 col-sm-12 col-12" id="data">
           <div class="row">
             <div class="col-md-12">
@@ -88,7 +91,7 @@
                 </div>
               </div>
               <div
-                class="row row-cols-1 row-cols-md-4 g-4 my-3 mx-1 scrollable-div"
+                class="row row-cols-1 row-cols-md-4 g-4 my-1 mx-1 scrollable-div"
                 >
                 {% if smartphones %}
                 {% for smartphone in smartphones %}
